@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-function Searchbar() {
+function Searchbar(props) {
     const [term, setTerm] = useState("");
 
     const search = () => {
-        console.log("szukaj", term)
+        props.onSearch(term);
     }
 
     return (
