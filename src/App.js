@@ -1,8 +1,9 @@
 import './App.css';
+import { Component } from 'react';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
 import Hotels from './components/Hotels/Hotels';
-import { Component } from 'react';
+import LoadingIcon from './components/UI/LoadingIcon/LoadingIcon';
 
 class App extends Component {
   hotels = [
@@ -10,7 +11,7 @@ class App extends Component {
       id: '1',
       name: 'Tu najlepiej',
       city: 'Warszawa',
-      rating: '4.5',
+      rating: 4.5,
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop',
       image: ''
     },
@@ -18,7 +19,7 @@ class App extends Component {
       id: '2',
       name: 'Hotel DoDo',
       city: 'Gdańsk',
-      rating: '3.8',
+      rating: 3.8,
       description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop',
       image: ''
     },
@@ -47,11 +48,10 @@ class App extends Component {
       <div className="App">
         <Header onSearch={term => { this.searchHandler(term) }} />
         <Menu />
-        {this.state.loading ? (
-          <p>ładowanie danych...</p>
-        ) : (
-          <Hotels hotels={this.state.hotels} />
-        )}
+        {this.state.loading
+          ? <LoadingIcon />
+          : <Hotels hotels={this.state.hotels} />
+        }
       </div>
     );
   }
